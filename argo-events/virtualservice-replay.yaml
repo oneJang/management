@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: replay-virtualservice
+  namespace: replay
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - replay-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /replay
+    route:
+    - destination:
+        port:
+          number: 12000 # can be omitted if it's the only port for reviews
+        host: webhook-eventsource-svc.replay.svc.cluster.local
+
