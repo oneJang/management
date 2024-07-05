@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: video-service-account
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: configmap-access-role
+rules:
+- apiGroups: [""]
+  resources: ["configmaps"]
+  verbs: ["get", "watch", "list"]  # Adjust verbs as per your application's requirements
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: configmap-access-rolebinding
+  namespace: default
+subjects:
+- kind: ServiceAccount
+  name: video-service-account  # Replace with the actual service account name
+  namespace: default
+roleRef:
+  kind: Role
+  name: configmap-access-role
+  apiGroup: rbac.authorization.k8s.io
+
