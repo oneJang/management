@@ -15,7 +15,7 @@ spec:
       serviceAccountName: video-service-account
       containers:
         - name: video-service
-          image: sjw980523/video-service:v11
+          image: sjw980523/video-service:v13
           ports:
             - containerPort: 5000
           env:

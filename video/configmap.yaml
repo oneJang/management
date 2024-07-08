@@ -6,9 +6,11 @@ data:
   ingress_route_paths: |
     {
       "replay": "/replay",
+      "add_to_watchlist": "/watchlist"
     }
   event_templates: |
     {
       "replay": {"action": "replay", "data": "Sample data for replay"},
+      "add_to_watchlist": {"action": "add_to_watchlist", "data": "Sample data for adding to watchlist"}
     }
 
