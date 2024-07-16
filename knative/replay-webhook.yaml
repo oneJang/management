@@ -1,0 +1,14 @@
+apiVersion: sources.triggermesh.io/v1alpha1
+kind: WebhookSource
+metadata:
+  name: replay-webhook
+  namespace: replay
+spec:
+  eventType: com.video.replay.requested
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: default
+      namespace: default
+

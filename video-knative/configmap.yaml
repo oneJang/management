@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: video-service-config
+data:
+  ingress_route_paths: |
+    {
+      "replay": "/replay",
+      "add_to_watchlist": "/watchlist"
+    }
+  event_templates: |
+    {
+      "replay": {
+        "eventType": "com.video.replay.requested",
+        "data": {
+          "description": "User replayed the video",
+          "videoId": "",
+          "startTime": "",
+          "action": "replay"
+        }
+      },
+      "add_to_watchlist": {
+        "eventType": "com.video.addwatchlist.requested",
+        "data": {
+          "description": "User added video to watchlist",
+          "videoId": "",
+          "startTime": "",
+          "action": "watchlist"
+        }
+      }
+    }
+  webhooksource_urls: |
+    {
+      "replay": "http://webhooksource-replay-webhook.replay.192.168.10.130.nip.io",
+      "add_to_watchlist": "http://webhooksource-watchlist.default.svc.cluster.local"
+    }
+
